@@ -19,6 +19,7 @@ class MongoDBCustomJWTAuthentication(JWTAuthentication):
             "user_id": str(user.id),
             "sub": str(user.id),
             "aud": self.token_audience,
+            "external_user_id": str(user.id),
         }
         return generate_jwt(data, self.lifetime_seconds, self.secret, JWT_ALGORITHM)
 
