@@ -1,28 +1,17 @@
-from typing import Optional
-from pydantic import BaseModel, Field
-from bson import ObjectId
-from apps.utils.validators import PyObjectId
+from fastapi_users.models import BaseUser, BaseUserCreate, BaseUserUpdate, BaseUserDB
 
 
-class User(BaseModel):
-    id: Optional[PyObjectId] = Field(alias="_id")
-    username: str
-    disabled: bool = False
-
-    class Config:
-        arbitrary_types_allowed = True
-        allow_population_by_field_name = True
-        json_encoders = {ObjectId: str}
+class User(BaseUser):
+    pass
 
 
-class UserInDB(User):
-    hashed_password: str
+class UserCreate(BaseUserCreate):
+    pass
 
 
-class Token(BaseModel):
-    access_token: str
-    token_type: str
+class UserUpdate(User, BaseUserUpdate):
+    pass
 
 
-class TokenData(BaseModel):
-    username: Optional[str] = None
+class UserDB(User, BaseUserDB):
+    pass

@@ -1,14 +1,13 @@
 # API Server
 fastapi
-uvicorn
+uvicorn[standard]
 pydantic[email]
 ujson
 email-validator
 python-multipart
 
 # JWT & Auth
-python-jose[cryptography]
-passlib[bcrypt]
+fastapi-users[mongodb]
 
 # Database
 motor
@@ -16,6 +15,7 @@ dnspython
 
 # Utility
 arrow
+logzero
 
 # Development
 black
