@@ -1,0 +1,22 @@
+# API Server
+fastapi
+uvicorn
+pydantic[email]
+ujson
+email-validator
+python-multipart
+
+# JWT & Auth
+python-jose[cryptography]
+passlib[bcrypt]
+
+# Database
+motor
+dnspython
+
+# Utility
+arrow
+
+# Development
+black
+flake8
