@@ -20,7 +20,11 @@ class AuthSettings(BaseSettings):
     USER_DB_COLLECTION: str = "users"
 
 
-class Settings(CommonSettings, ServerSettings, AuthSettings):
+class RealmSettings(BaseSettings):
+    REALM_APP_ID: str
+
+
+class Settings(CommonSettings, ServerSettings, AuthSettings, RealmSettings):
     pass
 
 
