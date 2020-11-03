@@ -18,5 +18,6 @@ arrow
 logzero
 
 # Development
+pip-tools
 black
 flake8
