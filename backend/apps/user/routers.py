@@ -9,6 +9,7 @@ from .models import User, UserCreate, UserUpdate, UserDB
 
 def get_users_router(db):
     users_collection = db["users"]
+
     user_db = MongoDBUserDatabase(UserDB, users_collection)
 
     fastapi_users = FastAPIUsers(
