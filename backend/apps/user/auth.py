@@ -1,15 +1,14 @@
-from fastapi_users.authentication import JWTAuthentication
-from fastapi_users.models import BaseUserDB
+from fastapi_users.authentication import CookieAuthentication
 from fastapi_users.utils import JWT_ALGORITHM, generate_jwt
 from config import settings
 
 
-class MongoDBRealmJWTAuthentication(JWTAuthentication):
+class MongoDBRealmJWTAuthentication(CookieAuthentication):
     def __init__(self, *args, **kwargs):
         super(MongoDBRealmJWTAuthentication, self).__init__(*args, **kwargs)
         self.token_audience = settings.REALM_APP_ID
 
-    async def _generate_token(self, user: BaseUserDB) -> str:
+    async def _generate_token(self, user):
         data = {
             "user_id": str(user.id),
             "sub": str(user.id),
@@ -22,5 +21,6 @@ class MongoDBRealmJWTAuthentication(JWTAuthentication):
 jwt_authentication = MongoDBRealmJWTAuthentication(
     secret=settings.JWT_SECRET_KEY,
     lifetime_seconds=settings.JWT_ACCESS_TOKEN_EXPIRE_MINUTES * 60,
-    tokenUrl="/auth/jwt/login",
+    cookie_name="FARM_auth",
+    cookie_secure=settings.SECURE_COOKIE,
 )
